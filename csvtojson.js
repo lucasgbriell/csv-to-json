@@ -11,9 +11,12 @@ const readCsv = function(){
         input: fs.createReadStream('teste.csv')
     });
     
-    return readable.on('line', (line) => {
+    readable.on('line', (line) => {
       lines.push(line);
-    })
+    }).on('close', () => {
+        header = lines[0].split(",");
+        createJson();
+    });
 }
 
 
@@ -28,9 +31,9 @@ const createJson = function(){
         }           
     content.push(obj);  
     }
-    console.log(JSON.stringify(content));
+    return console.log(JSON.stringify(content));
 }
-console.log(readCsv());
+readCsv();
 
 
 
