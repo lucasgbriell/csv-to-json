@@ -75,7 +75,6 @@ Last but not least, we are going to download the json converted.
 In node with
 
 - Express
-- Jquery
 - Multer
 
 ### Author
