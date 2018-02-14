@@ -28,15 +28,15 @@ csvController.csvToJson = (req, res, next) => {
 
         let obj = {};
         let currentline = line.split(",");
-        for (var j = 0; j < header.length; j++) {
-            obj[header[j]] = currentline[j];
+        for (let cell = 0; cell < header.length; cell++) {
+            obj[header[cell]] = currentline[cell];
         }
         return obj;
     } 
 
     const createJson = ({lines,header,content}) => {
-        for (let i = 1; i < lines.length; i++) {
-            const obj = createLine({line:lines[i],header});
+        for (let row = 1; row < lines.length; row++) {
+            const obj = createLine({line:lines[row],header});
             content.push(obj);
         }
         res.setHeader('Content-disposition', 'attachment; filename= csvConverted.json');
